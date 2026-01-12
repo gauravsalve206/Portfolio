@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Details - My Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    .project-detail {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .project-detail-header {
+      margin-bottom: 32px;
+    }
+
+    .project-detail-header .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+      transition: color var(--transition-fast);
+    }
+
+    .project-detail-header .back-link:hover {
+      color: var(--fg);
+    }
+
+    .project-detail-title {
+      font-size: clamp(1.8rem, 4vw + 1rem, 2.5rem);
+      font-weight: 600;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+
+    .project-detail-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .project-detail-meta span {
+      padding: 6px 12px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(0, 0, 0, 0.3);
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    body.light .project-detail-meta span {
+      border: 1px solid rgba(15, 16, 26, 0.1);
+      background: rgba(255, 255, 255, 0.6);
+    }
+
+    .project-detail-content {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .project-detail-section {
+      background: var(--bg-glass);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(var(--blur));
+      -webkit-backdrop-filter: blur(var(--blur));
+      padding: 24px 20px;
+    }
+
+    @media (min-width: 768px) {
+      .project-detail-section {
+        padding: 28px 28px 30px;
+      }
+    }
+
+    .project-detail-section h2 {
+      font-size: 1.1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .project-detail-section p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+
+    .project-detail-section p:last-child {
+      margin-bottom: 0;
+    }
+
+    .project-video-container {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%; /* 16:9 aspect ratio */
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: rgba(0, 0, 0, 0.3);
+    }
+
+    .project-video-container iframe,
+    .project-video-container video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .project-detail-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .project-detail-links a {
+      color: var(--fg);
+      font-size: 0.9rem;
+      opacity: 0.9;
+      transition: opacity var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .project-detail-links a:hover {
+      opacity: 1;
+      transform: translateX(2px);
+    }
+  </style>
+</head>
+<body>
+  <!-- Parallax background -->
+  <div class="bg-parallax" data-parallax>
+    <div class="bg-overlay"></div>
+  </div>
+
+  <!-- Page wrapper -->
+  <div class="page">
+    <!-- Floating header -->
+    <header class="header glass">
+      <div class="logo">Portfolio</div>
+      <nav class="nav">
+        <a href="index.html#hero">Home</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <span class="theme-toggle__icon">●</span>
+      </button>
+    </header>
+
+    <!-- Project Detail Content -->
+    <main class="project-detail">
+      <div class="project-detail-header">
+        <a href="index.html#projects" class="back-link">
+          ← Back to Projects
+        </a>
+        <h1 class="project-detail-title" id="projectTitle">Project Name</h1>
+        <div class="project-detail-meta" id="projectMeta"></div>
+      </div>
+
+      <div class="project-detail-content">
+        <!-- Description Section -->
+        <div class="project-detail-section">
+          <h2>Description</h2>
+          <div id="projectDescription">
+            <!-- Project description will be inserted here -->
+          </div>
+        </div>
+
+        <!-- Video Section (if available) -->
+        <div class="project-detail-section" id="videoSection" style="display: none;">
+          <h2>Video</h2>
+          <div class="project-video-container" id="videoContainer">
+            <!-- Video will be inserted here -->
+          </div>
+        </div>
+
+        <!-- Links Section -->
+        <div class="project-detail-section" id="linksSection" style="display: none;">
+          <h2>Links</h2>
+          <div class="project-detail-links" id="projectLinks">
+            <!-- Links will be inserted here -->
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <span>© <span id="year"></span> Gaurav Dipakkumar Salve</span>
+      <span>Built with HTML · CSS · JS</span>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    // Project data - EDIT: Add your project details here
+    const projects = {
+      "project-1": {
+        title: "Indian-Sign-Language-Recognition",
+        meta: ["ML", "Data Anylysis", "Python"],
+        description: `
+        <p>This project is a real-time Indian Sign Language (ISL) recognition and translation system built using computer vision and deep learning.
+        Hand, face, and pose landmarks are extracted using MediaPipe, and temporal gesture sequences are classified using an LSTM neural network.
+        The backend is powered by FastAPI with WebSocket-based real-time inference, while the frontend is built using HTML, CSS, and JavaScript.
+        The system supports sign-to-text, speech-to-sign, and text-to-sign translation using animated GIFs.</p>
+        `,
+        video: "Prjoect-videos/isl-recognition.mp4", // EDIT: Add YouTube embed URL or video file path (e.g., "https://www.youtube.com/embed/VIDEO_ID" or "video.mp4")
+        links: [
+          { text: "Code", url: "https://github.com/gauravsalve206/Indian-sign-language-Recognition-bidirectional" } // EDIT: Add your GitHub or code repository link
+        ]
+      },
+      "project-2": {
+        title: "Movie-Recommendation-System",
+        meta: ["Vectorization", "Data Anylisis",""],
+        description: `
+          <p>Detailed description of your second project. Explain the purpose, features, and your role in building it.</p>
+          <p>Add more details about the technical implementation, design decisions, or outcomes.</p>
+        `,
+        video: "Prjoect-videos/movie-recommendation.mp4", // EDIT: Add video URL if available
+        links: [
+          { text: "Code", url: "#" }
+        ]
+      },
+      "project-3": {
+        title: "YummyVerse",
+        meta: ["HTML", "CSS", "JS"],
+        description: `
+        <p>The website allows users to search recipes using the MealDB API and view detailed cooking instructions.
+        Built using HTML, CSS, and JavaScript, with a clean and responsive interface.
+        This project strengthened my understanding of API integration, frontend logic, and user-centric design.</p>
+        `,
+        video: "Prjoect-videos/yummyverse.mp4", // EDIT: Add YouTube embed URL or video file path (e.g., "https://www.youtube.com/embed/VIDEO_ID" or "video.mp4")
+        links: [
+          { text: "Code", url: "https://github.com/gauravsalve206/yummyverse" },{ text: "Live",url: "https://yummyverse.free.nf/" } // EDIT: Add your GitHub or code repository link
+        ]
+      }
+    };
+
+    // Get project ID from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const projectId = urlParams.get("id");
+    const project = projects[projectId];
+
+    if (project) {
+      // Set title
+      document.getElementById("projectTitle").textContent = project.title;
+      document.title = `${project.title} - My Portfolio`;
+
+      // Set meta tags
+      const metaContainer = document.getElementById("projectMeta");
+      project.meta.forEach(tag => {
+        const span = document.createElement("span");
+        span.textContent = tag;
+        metaContainer.appendChild(span);
+      });
+
+      // Set description
+      document.getElementById("projectDescription").innerHTML = project.description;
+
+      // Set video if available
+      if (project.video) {
+        const videoSection = document.getElementById("videoSection");
+        const videoContainer = document.getElementById("videoContainer");
+        videoSection.style.display = "block";
+
+        if (project.video.includes("youtube.com") || project.video.includes("youtu.be")) {
+          // YouTube embed
+          let videoId = project.video;
+          if (project.video.includes("youtu.be/")) {
+            videoId = project.video.split("youtu.be/")[1].split("?")[0];
+          } else if (project.video.includes("youtube.com/watch?v=")) {
+            videoId = project.video.split("watch?v=")[1].split("&")[0];
+          } else if (project.video.includes("youtube.com/embed/")) {
+            videoId = project.video.split("embed/")[1].split("?")[0];
+          }
+          const iframe = document.createElement("iframe");
+          iframe.src = `https://www.youtube.com/embed/${videoId}`;
+          iframe.allowFullscreen = true;
+          videoContainer.appendChild(iframe);
+        } else {
+          // Local video file
+          const video = document.createElement("video");
+          video.src = project.video;
+          video.controls = true;
+          video.style.width = "100%";
+          video.style.height = "100%";
+          videoContainer.appendChild(video);
+        }
+      }
+
+      // Set links if available
+      if (project.links && project.links.length > 0) {
+        const linksSection = document.getElementById("linksSection");
+        const linksContainer = document.getElementById("projectLinks");
+        linksSection.style.display = "block";
+
+        project.links.forEach(link => {
+          const a = document.createElement("a");
+          a.href = link.url;
+          a.textContent = link.text;
+          if (link.url.startsWith("http")) {
+            a.target = "_blank";
+            a.rel = "noopener";
+          }
+          linksContainer.appendChild(a);
+        });
+      }
+    } else {
+      // Project not found, redirect to home
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
+</html>
+
